@@ -1,0 +1,41 @@
+<template name="adminView">
+<div class="row-fluid">
+  <div class="span2"></div>
+  <div class="span8">
+    <br>
+    <label for="prompt">Prompt:</label>
+    <input id="prompt" type="text" style="width:100%">
+    <label for="hint">Hint:</label>
+    <input id="hint" type="text" style="width:100%">
+    {{#constant}}{{> hintCodeView}}{{/constant}}
+    <label for="concepts">Concepts:</label>
+    <input id="concepts" type="text" style="width:100%">
+    <label for="tests">Tests:</label>
+    <input id="tests" type="text" style="width:100%" value="[ ]">
+    Solution:
+    {{#constant}}{{> adminCodeView}}{{/constant}}
+
+    <button id="run_code">Test code and generate object</button> {{hotKey}}
+    <h4>Output:</h4>
+    <pre id="output">{{{output}}}</pre>
+    <h4>Tests:</h4>
+    <table>
+      <tr>
+        <th>Test Case</th>
+        <th>Output</th>
+      </tr>
+      {{{testOutputs}}}
+    </table>
+    <h4>Generated Object:</h4>
+    <pre id="problem_obj">{{problemObj}}</pre>
+  </div>
+</div>
+</template>
+
+<template name="adminCodeView">
+<textarea id="admin_code" style="display:none;"></textarea><br>
+</template>
+
+<template name="hintCodeView">
+<textarea id="hint_code" style="display:none;"></textarea><br>
+</template>

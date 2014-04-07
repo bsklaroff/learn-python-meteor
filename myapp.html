@@ -1,0 +1,80 @@
+<head>
+<title>Python Practice</title>
+<link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+{{renderPage}}
+</body>
+
+<template name="mainview">
+{{#if currentExercise}}
+<div class="row-fluid all">
+  <div id="sidebar" class="span2">
+    {{#each newConcepts}}
+    <h5>{{displayName}}</h5>
+    <p class="concept-explanation">{{{explanation}}}</p>
+    {{#if name}}
+    <a href="#">Learn More</a>
+    {{/if}}
+    {{/each}}
+  </div>
+  <div class="span10">
+    <div class="row-fluid">
+      <h3 class="prompt">{{currentExercise.prompt}}</h3>
+    </div>
+    <div class="row-fluid">
+      <div class="span7">
+        {{#constant}}{{> codeview}}{{/constant}}
+
+      </div>
+      <div class="span5">
+        {{#if testOutputs}}
+        <h4>Output:</h4>
+        <pre id="output">{{{output}}}</pre>
+        <table>
+          <tr>
+            <th>Test Case</th>
+            <th>Expected</th>
+            <th>Your Result</th>
+            <th>Correct?</th>
+          </tr>
+          {{{testOutputs}}}
+        </table>
+
+        {{/if}}
+        <span>Total Progress: {{progress}}</span>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span7">
+        <div class="row-fluid">
+          <div class="span9">
+            {{#if hintVisible}}
+            <div id="hint_wrapper">
+              <b> Hint: </b>
+              <div id="hint">{{{currentExercise.hint}}}</div>
+            </div>
+            {{else}}
+            <button id="show_hint">Get hint</button>
+            {{/if}}
+          </div>
+          <div class="span3">
+            <!-- <span class="gray">{{hotKey}}</span> -->
+            <button id="run_code">Test your code</button>
+          </div>
+        </div>
+      </div>
+      <div class="span5">
+        {{#if next}}
+        <button id="next_exercise">Next</button>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  {{/if}}
+  </template>
+
+  <template name="codeview">
+  <textarea id="code" style="display:none;"></textarea><br>
+  </template>
